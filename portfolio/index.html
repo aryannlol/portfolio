@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name - Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Styles -->
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    header.scrolled {
+      background: #333;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff6347;
+    }
+
+    .social-links a {
+      margin-left: 15px;
+      color: #fff;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff6347;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero .cta {
+      padding: 10px 20px;
+      background: #ff6347;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .hero .cta:hover {
+      background: #e5533d;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* About Section */
+    #about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+
+    #about img {
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    #about .about-text {
+      flex: 1;
+    }
+
+    #about h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #ff6347;
+    }
+
+    #about p {
+      margin-bottom: 20px;
+    }
+
+    #about .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    #about .skills span {
+      background: #fff;
+      color: #ff6347;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      border: 2px solid transparent;
+      background-image: linear-gradient(white, white),
+                        linear-gradient(45deg, #ff6347, #e5533d, #ff6347, #e5533d, #ff6347);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      animation: rainbow-border 2s linear infinite;
+    }
+
+    @keyframes rainbow-border {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 0; }
+    }
+
+    /* Projects Section */
+    #projects .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-card .project-info {
+      padding: 20px;
+    }
+
+    .project-card .project-info h3 {
+      margin-bottom: 10px;
+      color: #ff6347;
+    }
+
+    .project-card .project-info p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .project-card .project-info a {
+      color: #ff6347;
+      font-weight: bold;
+    }
+
+    /* Certifications Section */
+    #certifications .certificates-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .certificate {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 200px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .certificate:hover {
+      transform: scale(1.05);
+    }
+
+    .certificate img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .certificate p {
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Achievements Section */
+    #achievements .achievements-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .achievement {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .achievement:hover {
+      transform: translateY(-10px);
+    }
+
+    .achievement i {
+      font-size: 3rem;
+      color: #ff6347;
+      margin-bottom: 15px;
+    }
+
+    .achievement h4 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .achievement p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Section */
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #contact input, #contact textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    #contact button {
+      padding: 10px 20px;
+      background: #ff6347;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    #contact button:hover {
+      background: #e5533d;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 50px;
+    }
+
+    footer .social-links a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    footer .social-links a:hover {
+      color: #ff6347;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+
+      nav ul li {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      #about img {
+        width: 200px;
+        margin-bottom: 20px;
+      }
+
+      .skills span {
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <h1>Your Name</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="social-links">
+      <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Explore my projects, achievements, and certifications.</p>
+      <button class="cta" onclick="window.location.href='#projects'">View Projects</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <img src="your-image.jpg" alt="Your Image">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>I am a passionate developer with skills in various technologies.</p>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Python</span>
+        <span>C</span>
+        <span>DSA</span>
+      </div>
+    </div>
+  </section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project-grid">
+    <div class="project-card" onclick="openPopup('project1')">
+      <img src="project1.jpg" alt="Project 1">
+      <div class="project-info">
+        <h3>Project 1</h3>
+        <p>Description of Project 1</p>
+      </div>
+    </div>
+    <div class="project-card" onclick="openPopup('project2')">
+      <img src="project2.jpg" alt="Project 2">
+      <div class="project-info">
+        <h3>Project 2</h3>
+        <p>Description of Project 2</p>
+      </div>
+    </div>
+    <div class="project-card" onclick="openPopup('project3')">
+      <img src="project3.jpg" alt="Project 3">
+      <div class="project-info">
+        <h3>Project 3</h3>
+        <p>Description of Project 3</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="certificates-grid">
+    <div class="certificate" onclick="openPopup('certificate1')">
+      <img src="certificate1.jpg" alt="Certificate 1">
+      <p>Certificate Name 1</p>
+    </div>
+    <div class="certificate" onclick="openPopup('certificate2')">
+      <img src="certificate2.jpg" alt="Certificate 2">
+      <p>Certificate Name 2</p>
+    </div>
+    <div class="certificate" onclick="openPopup('certificate3')">
+      <img src="certificate3.jpg" alt="Certificate 3">
+      <p>Certificate Name 3</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pop-up Structure -->
+<div id="popup-overlay" class="popup-overlay" onclick="closePopup()">
+  <div class="popup-container">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <div id="popup-content" class="popup-content"></div>
+  </div>
+</div>
+
+<!-- JavaScript for Pop-up -->
+<script>
+  // Function to open pop-up with dynamic content
+  function openPopup(item) {
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupContent = document.getElementById('popup-content');
+
+    // Change content based on the clicked item (Project or Certificate)
+    if (item === 'project1') {
+      popupContent.innerHTML = '<h3>Project 1</h3><p>Detailed description and info about Project 1.</p>';
+    } else if (item === 'project2') {
+      popupContent.innerHTML = '<h3>Project 2</h3><p>Detailed description and info about Project 2.</p>';
+    } else if (item === 'project3') {
+      popupContent.innerHTML = '<h3>Project 3</h3><p>Detailed description and info about Project 3.</p>';
+    } else if (item === 'certificate1') {
+      popupContent.innerHTML = '<h3>Certificate 1</h3><p>Details of Certificate 1.</p>';
+    } else if (item === 'certificate2') {
+      popupContent.innerHTML = '<h3>Certificate 2</h3><p>Details of Certificate 2.</p>';
+    } else if (item === 'certificate3') {
+      popupContent.innerHTML = '<h3>Certificate 3</h3><p>Details of Certificate 3.</p>';
+    }
+
+    // Show the pop-up
+    popupOverlay.style.display = 'block';
+  }
+
+  // Close the pop-up
+  function closePopup() {
+    const popupOverlay = document.getElementById('popup-overlay');
+    popupOverlay.style.display = 'none';
+  }
+
+  // Smooth scroll effect for quick navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+<!-- Popup Styling -->
+<style>
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .popup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    width: 60%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .popup-content h3 {
+    margin-top: 0;
+  }
+</style>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Your Name. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 0);
+    });
+  </script>
+</body>
+</html>
+
